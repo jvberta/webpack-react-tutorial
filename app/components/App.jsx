@@ -28,6 +28,8 @@ export default class App extends React.Component {
     }
 
     this.addNote = this.addNote.bind(this);
+    this.editNote = this.editNote.bind(this);
+    this.findNote = this.findNote.bind(this);
   }
 
   render() {
@@ -51,11 +53,29 @@ export default class App extends React.Component {
   }
 
   editNote(noteId,task){
-    console.log('note edited',noteId,task);
+    let notes = this.state.notes;
+    const noteIndex = this.findNote(noteId);
+
+    if(noteIndex < 0){
+      return;
+    }
+
+    notes[noteIndex].task = task;
+
+    this.setState({notes});
 
   }
 
-}
+  findNote(id){
+    const notes = this.state.notes;
+    const noteIndex = notes.findIndex(note => note.id ===  id);
 
-  
+    if(noteIndex < 0){
+      console.warn('Failed to find Note',notes,id);
+    }
 
+    return noteIndex;
+
+  }
+
+};
