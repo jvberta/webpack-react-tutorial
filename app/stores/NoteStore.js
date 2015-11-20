@@ -22,16 +22,15 @@ class NoteStore {
   }
 
   update({id, task}) {
-    console.log('teste');
     let notes = this.notes;
     const noteIndex  = this.findNote(id);
 
     if(noteIndex < 0){
-      
+    
       return
     }
 
-    notes[noteIndex].taks = task;
+    notes[noteIndex].task = task;
     this.setState({notes});
 
   }
