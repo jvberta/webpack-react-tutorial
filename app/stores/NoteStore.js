@@ -8,8 +8,6 @@ class NoteStore {
 
     this.notes = [];
   }
-
-
   create(note) {
     const notes = this.notes;
 
@@ -18,23 +16,19 @@ class NoteStore {
     this.setState({
       notes: notes.concat(note)
     });
-
   }
-
   update({id, task}) {
     let notes = this.notes;
-    const noteIndex  = this.findNote(id);
+    const noteIndex = this.findNote(id);
 
-    if(noteIndex < 0){
-    
-      return
+    if(noteIndex < 0) {
+      return;
     }
 
     notes[noteIndex].task = task;
+
     this.setState({notes});
-
   }
-
   delete(id) {
     const notes = this.notes;
     const noteIndex = this.findNote(id);
@@ -46,10 +40,8 @@ class NoteStore {
     this.setState({
       notes: notes.slice(0, noteIndex).concat(notes.slice(noteIndex + 1))
     });
-
   }
-
-  findNote(id){
+  findNote(id) {
     const notes = this.notes;
     const noteIndex = notes.findIndex((note) => note.id === id);
 
