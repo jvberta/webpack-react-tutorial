@@ -23,4 +23,7 @@ export default class App extends React.Component {
   addItem() {
     LaneActions.create({name: 'New lane'});
   }
+
+  
+
 }

@@ -15,6 +15,7 @@ export default class Lane extends React.Component {
 		this.addNote = this.addNote.bind(this, id);
 		this.deleteNote = this.deleteNote.bind(this, id);
 		this.editName = this.editName.bind(this,id);
+		//this.deleteLane = this.deleteLane.bind(this,id);
 	}
 	render() {
 		const {lane, ...props} = this.props;
@@ -23,7 +24,8 @@ export default class Lane extends React.Component {
 			<div {...props}>
 				<div className="lane-header">
 					<Editable className="lane-name" value={lane.name}
-					onEdit={this.editName}/> 
+					onEdit={this.editName}
+					/*onDelete={this.deleteLane}*//> 
 					<div className="lane-add-note">
 						<button onClick={this.addNote}>+</button>
 					</div>
@@ -52,6 +54,15 @@ export default class Lane extends React.Component {
 		NoteActions.delete(noteId);
 	}
 	editName(id,name){
-		console.log('edited lane name',id,name);
+		if(name) {
+			LaneActions.update({id, name});
+		}
+		else {
+			LaneActions.delete(id);
+		}
 	}
+
+	/*deleteLane(id){
+		LaneActions.delete(id);
+	}*/
 }

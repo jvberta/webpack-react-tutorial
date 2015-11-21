@@ -35,7 +35,7 @@ export default class Note extends React.Component {
   }
   renderValue() {
     const onDelete = this.props.onDelete;
-
+    
     return (
       <div onClick={this.edit}>
         <span className="value">{this.props.value}</span>
